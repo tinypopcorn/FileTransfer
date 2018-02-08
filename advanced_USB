@@ -1,0 +1,59 @@
+while :
+do
+
+echo "The objective of this program is to allow users to select which USB they want to select and transfer files from" 
+cd /
+cd Volumes
+echo "Please select which USB you would like to transfer files from: "
+ls
+
+echo -n "Type in the name of the USB you would like and press Enter (Case Sensitive) "
+read ANSWER
+if [ "$ANSWER" == "Macintosh HD" ]; then
+echo "That is not a USB, Program Ending..."
+exit 0
+fi
+
+if [ ! -d "$ANSWER" ]; then
+echo "Not a Directory, Program is Ending.."
+exit 0
+fi
+
+cd $ANSWER
+mkdir Transferred_USBFILES
+FILES=/Volumes/$ANSWER/*
+
+for f in $FILES
+do
+mv $f Transferred_USBFILES
+mv Transferred_USBFILES /Users/kathyly/Desktop
+done
+ 
+#####################################################
+#elif [ "$ANSWER" == "Y" ]; then
+#echo "Getting ready to transferring more files..."
+
+
+#####################################################################
+#testing: This is wrong. Look up how to hide MAcintosh
+#NOSHOW="/Volumes/Macintosh HD"
+#ls -d */ --ignore='Mac*/'
+
+
+
+
+############################################################################
+
+#allowing users to quit or transfer more
+
+echo -n "Done Transferring Files. Would you like to transfer more files? Press Y or N and [Enter] "
+read OPTION
+if [ "$OPTION" == "N" ]
+then 
+echo "Thank you for using Kathy's Program! :-)"
+exit 0
+elif [ "$OPTION" == "Y" ]; then
+echo "Getting ready to transferring more files..."
+fi
+
+done
